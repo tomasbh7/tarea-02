@@ -43,6 +43,13 @@
     <string name="bebidadescripcion">Bebida energizante sabor a brainrot</string>
     <string name="bebidaprecio">5 Robux</string>
 
+    <string name="carrito">Carrito</string>
+
+    <string name="pagar">Pagar</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="precio">58 Robux</string>
+    <string name="cantidad">1</string>
+
     <string name="desc_taco">Imagen de tacos al pastor</string>
     <string name="desc_hamburguesa">Imagen de hamburguesa clásica</string>
     <string name="desc_ensalada">Imagen de ensalada fresca</string>
@@ -51,5 +58,8 @@
     <string name="desc_frijoles">Imagen de frijoles charros</string>
     <string name="desc_bolitas">Imagen de bolitas de queso</string>
     <string name="desc_bebida">Imagen de bebida refrescante</string>
+    <string name="desc_carrito">Icono de botón de carrito de compras</string>
+    <string name="desc_eliminar">Icono de botón de eliminar</string>
+    <string name="desc_cantidad">Icono de botón de cantidad de producto</string>
 
 </resources>
