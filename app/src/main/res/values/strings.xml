@@ -11,7 +11,7 @@
     <string name="hamburguesa">HAMBURGUESAS</string>
     <string name="hamburguesanombre">Cheezburguer</string>
     <string name="hamburguesadescripcion">Hamburguesa robloxiana de queso con carne de Labubu</string>
-    <string name="hamburguesaprecio">20 Robux</string>
+    <string name="hamburguesaprecio">9 Robux</string>
 
     <string name="ensalada">ENSALADAS</string>
     <string name="ensaladanombre">Ensalada</string>
@@ -61,5 +61,8 @@
     <string name="desc_carrito">Icono de botón de carrito de compras</string>
     <string name="desc_eliminar">Icono de botón de eliminar</string>
     <string name="desc_cantidad">Icono de botón de cantidad de producto</string>
+    <string name="mas">+</string>
+    <string name="inicial">0</string>
+    <string name="menos">-</string>
 
 </resources>

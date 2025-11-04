@@ -60,9 +60,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="6dp">
+                android:layout_marginTop="8dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -103,6 +101,7 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
+                        <!-- Contenedor horizontal para precio y contador -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -110,16 +109,67 @@
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical">
 
+                            <!-- Precio -->
                             <TextView
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
+                                android:layout_weight="1"
                                 android:text="@string/tacosprecio"
-                                android:textSize="16sp"
+                                android:textSize="14sp"
                                 android:textColor="#8B4513"
                                 android:textStyle="bold"
                                 android:background="#F5E6D3"
                                 android:padding="8dp"
-                                android:paddingHorizontal="12dp" />
+                                android:paddingHorizontal="12px" />
+
+                            <!-- Contador -->
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementTacos"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountTacos"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementTacos"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
 
@@ -188,17 +238,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/hamburguesaprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/hamburguesaprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementHamburguesa"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountHamburguesa"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementHamburguesa"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -265,17 +372,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/ensaladaprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/ensaladaprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementEnsalada"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountEnsalada"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementEnsalada"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -342,17 +506,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/pizzaprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/pizzaprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementPizza"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountPizza"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementPizza"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -419,17 +640,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/papasprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/papasprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementPapas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountPapas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementPapas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -483,17 +761,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/frijolesprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/frijolesprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementFrijoles"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountFrijoles"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementFrijoles"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -547,17 +882,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/bolitasprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/bolitasprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementBolitas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountBolitas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementBolitas"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -624,17 +1016,74 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/bebidaprecio"
-                            android:textSize="16sp"
-                            android:textColor="#8B4513"
-                            android:textStyle="bold"
-                            android:background="#F5E6D3"
-                            android:padding="8dp"
-                            android:paddingHorizontal="12dp"
-                            android:layout_marginTop="8dp" />
+                            android:orientation="horizontal"
+                            android:layout_marginTop="8dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/bebidaprecio"
+                                android:textSize="14sp"
+                                android:textColor="#8B4513"
+                                android:textStyle="bold"
+                                android:background="#F5E6D3"
+                                android:padding="8dp"
+                                android:paddingHorizontal="12dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="#F5E6D3"
+                                android:padding="6dp"
+                                android:layout_marginStart="8dp">
+
+                                <TextView
+                                    android:id="@+id/btnDecrementBebida"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/menos"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                                <TextView
+                                    android:id="@+id/tvCountBebida"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/inicial"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="#FFFFFF"
+                                    android:layout_marginHorizontal="4dp" />
+
+                                <TextView
+                                    android:id="@+id/btnIncrementBebida"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:text="@string/mas"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    android:textColor="#8B4513"
+                                    android:background="@drawable/button_counter"
+                                    android:clickable="true"
+                                    android:focusable="true" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
