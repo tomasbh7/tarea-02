@@ -101,7 +101,6 @@
                             android:textColor="#666666"
                             android:layout_marginTop="4dp" />
 
-                        <!-- Contenedor horizontal para precio y contador -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -109,7 +108,6 @@
                             android:layout_marginTop="8dp"
                             android:gravity="center_vertical">
 
-                            <!-- Precio -->
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -122,7 +120,6 @@
                                 android:padding="8dp"
                                 android:paddingHorizontal="12px" />
 
-                            <!-- Contador -->
                             <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -140,9 +137,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                                 <TextView
                                     android:id="@+id/tvCountTacos"
@@ -165,9 +160,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                             </LinearLayout>
 
@@ -274,9 +267,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                                 <TextView
                                     android:id="@+id/tvCountHamburguesa"
@@ -299,9 +290,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                             </LinearLayout>
 
@@ -408,9 +397,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                                 <TextView
                                     android:id="@+id/tvCountEnsalada"
@@ -433,9 +420,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                             </LinearLayout>
 
@@ -542,9 +527,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                                 <TextView
                                     android:id="@+id/tvCountPizza"
@@ -567,9 +550,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                             </LinearLayout>
 
@@ -676,9 +657,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter"/>
 
                                 <TextView
                                     android:id="@+id/tvCountPapas"
@@ -701,9 +680,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                             </LinearLayout>
 
@@ -797,9 +774,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                                 <TextView
                                     android:id="@+id/tvCountFrijoles"
@@ -822,9 +797,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                             </LinearLayout>
 
@@ -918,9 +891,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                                 <TextView
                                     android:id="@+id/tvCountBolitas"
@@ -944,8 +915,7 @@
                                     android:gravity="center"
                                     android:textColor="#8B4513"
                                     android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:focusableInTouchMode="true" />
 
                             </LinearLayout>
 
@@ -1052,9 +1022,7 @@
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
-                                    android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:background="@drawable/button_counter" />
 
                                 <TextView
                                     android:id="@+id/tvCountBebida"
@@ -1072,14 +1040,12 @@
                                     android:id="@+id/btnIncrementBebida"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:text="@string/mas"
                                     android:textSize="20sp"
                                     android:textStyle="bold"
                                     android:gravity="center"
                                     android:textColor="#8B4513"
                                     android:background="@drawable/button_counter"
-                                    android:clickable="true"
-                                    android:focusable="true" />
+                                    android:focusableInTouchMode="true" />
 
                             </LinearLayout>
 
