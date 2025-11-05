@@ -43,12 +43,17 @@
     <string name="bebidadescripcion">Bebida energizante sabor a brainrot</string>
     <string name="bebidaprecio">5 Robux</string>
 
+    <string name="nombre_producto">Default</string>
+    <string name="precio_producto">0 Robux</string>
     <string name="carrito">Carrito</string>
 
     <string name="pagar">Pagar</string>
     <string name="subtotal">Subtotal:</string>
     <string name="precio">33 Robux</string>
-    <string name="cantidad">1</string>
+
+    <string name="carritovacio"> El carrito está vacío</string>
+    <string name="gracias">Gracias por su compra!"</string>
+    <string name="formatoprecio">Subtotal: %d Robux</string>
 
     <string name="desc_taco">Imagen de tacos al pastor</string>
     <string name="desc_hamburguesa">Imagen de hamburguesa clásica</string>
@@ -61,8 +66,12 @@
     <string name="desc_carrito">Icono de botón de carrito de compras</string>
     <string name="desc_eliminar">Icono de botón de eliminar</string>
     <string name="desc_cantidad">Icono de botón de cantidad de producto</string>
+    <string name="desc_imagen">Imagen de producto</string>
+    <string name="desc_atras">Icono de botón de flecha hacia atrás</string>
+
     <string name="mas">+</string>
     <string name="inicial">0</string>
+
     <string name="menos">-</string>
 
 </resources>

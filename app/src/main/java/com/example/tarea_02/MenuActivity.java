@@ -23,6 +23,8 @@ public class MenuActivity extends AppCompatActivity {
 
     private Map<String, Integer> productCounts = new HashMap<>();
     private Map<String, TextView> countTextViews = new HashMap<>();
+    private TextView tvTotalCount;
+    private int totalCount = 0;
 
 
     @Override
@@ -33,8 +35,10 @@ public class MenuActivity extends AppCompatActivity {
         Log.i("DEBUG", " MenuActivity cargado");
         initializeAllCounters();
         ImageButton btnCarrito = findViewById(R.id.btnCarrito);
+        tvTotalCount = findViewById(R.id.tvTotalCount);
         btnCarrito.setOnClickListener(v -> {
             Intent i = new Intent(MenuActivity.this, CarritoActivity.class);
+            i.putExtra("productCounts", new HashMap<>(productCounts));
             startActivity(i);
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -46,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private void initializeAllCounters() {
         productCounts.putIfAbsent("tacos", 0);
-        setupProductCounter("hamburguesa", R.id.btnIncrementHamburguesa,R.id.btnDecrementHamburguesa,R.id.tvCountHamburguesa);
+        setupProductCounter("hamburguesa", R.id.btnIncrementHamburguesa, R.id.btnDecrementHamburguesa, R.id.tvCountHamburguesa);
         setupProductCounter("tacos", R.id.btnIncrementTacos, R.id.btnDecrementTacos, R.id.tvCountTacos);
         setupProductCounter("ensalada", R.id.btnIncrementEnsalada, R.id.btnDecrementEnsalada, R.id.tvCountEnsalada);
         setupProductCounter("pizza", R.id.btnIncrementPizza, R.id.btnDecrementPizza, R.id.tvCountPizza);
@@ -73,8 +77,24 @@ public class MenuActivity extends AppCompatActivity {
         int currentCount = productCounts.get(productName);
         int newCount = currentCount + change;
         if (newCount >= 0) {
+            // Actualiza el producto individual
             productCounts.put(productName, newCount);
             countTextViews.get(productName).setText(String.valueOf(newCount));
+
+            // Recalcula el total
+            totalCount = 0;
+            for (int count : productCounts.values()) {
+                totalCount += count;
+            }
+
+            // Actualiza el circulito del carrito
+            if (totalCount > 0) {
+                tvTotalCount.setVisibility(View.VISIBLE);
+                tvTotalCount.setText(String.valueOf(totalCount));
+            } else {
+                tvTotalCount.setVisibility(View.GONE);
+            }
         }
     }
-    }
+}
+

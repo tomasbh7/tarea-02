@@ -13,218 +13,70 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
             android:padding="20dp"
             android:background="#F5E6D3"
             android:layout_marginBottom="24dp"
             android:elevation="2dp">
 
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_arrow"
+                android:contentDescription="@string/desc_atras" />
+
             <TextView
+                android:id="@+id/txt_titulo_carrito"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/carrito"
                 android:textColor="#8B4513"
                 android:textSize="40sp"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
+        </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
 
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/taco"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/image_border"
-                    android:contentDescription="@string/tacosdescripcion"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tacosnombre"
-                        android:textSize="20sp"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tacosprecio"
-                        android:textSize="18sp"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <TextView
-                        android:id="@+id/qty_taco"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:gravity="center"
-                        android:text="@string/cantidad"
-                        android:textStyle="bold"
-                        android:textColor="#8B4513"
-                        android:background="@drawable/qty_badge"
-                        android:contentDescription="@string/desc_cantidad" />
-
-                    <ImageView
-                        android:id="@+id/trash_taco"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@drawable/eliminar"
-                        android:contentDescription="@string/desc_eliminar" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/pizza"
-                    android:scaleType="centerCrop"
-                    android:background="@drawable/image_border"
-                    android:contentDescription="@string/pizzadescripcion"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pizzanombre"
-                        android:textSize="20sp"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/pizzaprecio"
-                        android:textSize="18sp"
-                        android:textColor="#333333"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
-                    tools:ignore="UseCompoundDrawables">
-
-                    <TextView
-                        android:id="@+id/qty_pizza"
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:gravity="center"
-                        android:text="@string/cantidad"
-                        android:textStyle="bold"
-                        android:textColor="#8B4513"
-                        android:background="@drawable/qty_badge"
-                        android:contentDescription="@string/desc_cantidad" />
-
-                    <ImageView
-                        android:id="@+id/trash_pizza"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_marginTop="12dp"
-                        android:src="@drawable/eliminar"
-                        android:contentDescription="@string/desc_eliminar" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <LinearLayout
+            android:id="@+id/layoutCarrito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:background="#F5E6D3"
-            android:layout_marginTop="8dp"
-            android:elevation="2dp">
+            android:layout_marginBottom="12dp">
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#F5E6D3"
+            android:layout_marginBottom="12dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="12dp">
-
-                <TextView
-                    android:id="@+id/txt_subtotal_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/subtotal"
-                    android:textSize="27sp"
-                    android:textColor="#8B4513"
-                    android:textStyle="bold"
-                    android:layout_marginEnd="8dp"/>
-
+                android:padding="16dp"
+                android:layout_marginTop="8dp"
+                android:elevation="2dp">
                 <TextView
                     android:id="@+id/txt_subtotal_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/precio"
+                    android:text="@string/formatoprecio"
                     android:textSize="27sp"
                     android:textColor="#8B4513"
                     android:textStyle="bold"/>
             </LinearLayout>
-
             <Button
                 android:id="@+id/btn_pagar"
                 android:layout_width="match_parent"
@@ -234,8 +86,10 @@
                 android:textSize="20sp"
                 android:textColor="#FFFFFF"
                 android:backgroundTint="#8B4513"
-                android:elevation="4dp"/>
+                android:elevation="4dp"
+                android:layout_marginBottom="16dp"/>
         </LinearLayout>
+
 
     </LinearLayout>
 
