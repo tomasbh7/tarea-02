@@ -7,6 +7,18 @@
     android:background="#FFF8F0"
     tools:context=".MenuActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#8B4513"
+        android:elevation="8dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="#FFFFFF"
+        app:title=" "
+        app:navigationIcon="@drawable/ic_menu" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

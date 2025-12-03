@@ -17,7 +17,12 @@ import java.util.Map;
 
 import android.util.Log;
 import android.widget.Button;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -32,6 +37,8 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         Log.i("DEBUG", " MenuActivity cargado");
         initializeAllCounters();
         ImageButton btnCarrito = findViewById(R.id.btnCarrito);
@@ -47,6 +54,33 @@ public class MenuActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.menu_historial) {
+            Toast.makeText(this, "Historial de Pedidos", Toast.LENGTH_SHORT).show();
+            return true;
+
+        } else if (id == R.id.menu_promociones) {
+            Toast.makeText(this, "Promociones", Toast.LENGTH_SHORT).show();
+            return true;
+
+        } else if (id == R.id.menu_acerca) {
+            Toast.makeText(this, "Acerca de la aplicación", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void initializeAllCounters() {
         productCounts.putIfAbsent("tacos", 0);

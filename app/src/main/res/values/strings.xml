@@ -74,4 +74,8 @@
 
     <string name="menos">-</string>
 
+    <string name="opcion1">Historial de Pedidos</string>
+    <string name="opcion2">Promociones</string>
+    <string name="opcion3">Acerca de</string>
+
 </resources>
