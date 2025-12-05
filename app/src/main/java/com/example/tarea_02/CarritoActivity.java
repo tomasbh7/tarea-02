@@ -89,7 +89,7 @@ public class CarritoActivity extends AppCompatActivity {
             subtotal += precio * cantidad;
 
             btnEliminar.setOnClickListener(v -> {
-                carritoDAO.restarProducto(nombre);
+                carritoDAO.eliminarProducto(nombre);
                 mostrarProductos();
             });
 
