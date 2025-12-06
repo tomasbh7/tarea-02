@@ -4,35 +4,66 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.tarea_02.adapter.MenuAdapter;
 import com.example.tarea_02.db.CarritoDAO;
 import com.example.tarea_02.model.MenuHeaderModel;
 import com.example.tarea_02.model.MenuItemModel;
 import com.example.tarea_02.data.MenuData;
-
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuActivity extends AppCompatActivity {
-
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView recyclerMenu;
     MenuAdapter adapter;
     private TextView tvTotalCount;
 
     private CarritoDAO carritoDAO;
 
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private ActionBarDrawerToggle toggle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+        getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         setContentView(R.layout.activity_menu);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        tvTotalCount = findViewById(R.id.tvTotalCount);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
 
         tvTotalCount = findViewById(R.id.tvTotalCount);
 
@@ -45,6 +76,72 @@ public class MenuActivity extends AppCompatActivity {
         actualizarBadge();
     }
 
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.nav_menu) {
+            // Ya estamos en el menú principal
+            Toast.makeText(this, "Menú Principal", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_carrito) {
+            // Ir al carrito
+            startActivity(new Intent(this, CarritoActivity.class));
+        } else if (id == R.id.nav_historial) {
+            Toast.makeText(this, "Historial de Pedidos", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_promociones) {
+            Toast.makeText(this, "Promociones", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_config) {
+            Toast.makeText(this, "Configuración", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_acerca) {
+            Toast.makeText(this, "Acerca de la aplicación", Toast.LENGTH_SHORT).show();
+        }
+
+        // Cerrar el drawer después de seleccionar
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // Manejar clic en el ícono de hamburguesa (lado izquierdo)
+        if (id == android.R.id.home) {
+           Toast.makeText(this, "Menú hamburguesa presionado", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        // Manejar los ítems del menú de tres puntos (lado derecho)
+        if (id == R.id.menu_historial) {
+            // Abrir historial de pedidos
+            Toast.makeText(this, "Historial de pedidos", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_promociones) {
+            // Ver promociones
+            Toast.makeText(this, "Promociones", Toast.LENGTH_SHORT).show();
+            return true;
+        } else if (id == R.id.menu_acerca) {
+            // Acerca de la aplicación
+            Toast.makeText(this, "Acerca de la aplicación", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     private void setupRecycler() {
 
