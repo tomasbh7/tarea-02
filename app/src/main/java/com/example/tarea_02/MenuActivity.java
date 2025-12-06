@@ -3,31 +3,30 @@ package com.example.tarea_02;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.tarea_02.adapter.MenuAdapter;
 import com.example.tarea_02.db.CarritoDAO;
+import com.example.tarea_02.model.MenuHeaderModel;
+import com.example.tarea_02.model.MenuItemModel;
+import com.example.tarea_02.data.MenuData;
 
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private CarritoDAO carritoDAO;
+    RecyclerView recyclerMenu;
+    MenuAdapter adapter;
     private TextView tvTotalCount;
 
-    // Mapa que guarda referencias a los TextView del contador
-    private final Map<String, TextView> countTextViews = new HashMap<>();
+    private CarritoDAO carritoDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,146 +34,86 @@ public class MenuActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu);
 
+        tvTotalCount = findViewById(R.id.tvTotalCount);
+
         carritoDAO = new CarritoDAO(this);
 
-        configurarToolbar();
-        inicializarUI();
-        inicializarContadores();
-        actualizarUIContadores();
-        configurarInsetsPantalla();
+        findViewById(R.id.btnCarrito).setOnClickListener(v ->
+                startActivity(new Intent(MenuActivity.this, CarritoActivity.class)));
+
+        setupRecycler();
+        actualizarBadge();
+    }
+
+
+    private void setupRecycler() {
+
+        recyclerMenu = findViewById(R.id.recyclerMenu);
+        recyclerMenu.setLayoutManager(new LinearLayoutManager(this));
+
+        List<Object> itemsUI = new ArrayList<>();
+        List<MenuItemModel> productos = new ArrayList<>();
+
+        // Crear productos
+        MenuItemModel tacos = new MenuItemModel(R.drawable.taco, getString(R.string.tacosnombre), getString(R.string.tacosdescripcion), getString(R.string.tacosprecio), 8);
+        MenuItemModel hamburguesa = new MenuItemModel(R.drawable.hamburguesa, getString(R.string.hamburguesanombre), getString(R.string.hamburguesadescripcion), getString(R.string.hamburguesaprecio), 9);
+        MenuItemModel ensalada = new MenuItemModel(R.drawable.ensalada, getString(R.string.ensaladanombre), getString(R.string.ensaladadescripcion), getString(R.string.ensaladaprecio), 5);
+        MenuItemModel pizza = new MenuItemModel(R.drawable.pizza, getString(R.string.pizzanombre), getString(R.string.pizzadescripcion), getString(R.string.pizzaprecio), 25);
+        MenuItemModel papas = new MenuItemModel(R.drawable.papas, getString(R.string.papasnombre), getString(R.string.papasdescripcion), getString(R.string.papasprecio), 4);
+        MenuItemModel frijoles = new MenuItemModel(R.drawable.frijoles, getString(R.string.frijolesnombre), getString(R.string.frijolesdescripcion), getString(R.string.frijolesprecio), 5);
+        MenuItemModel bolitas = new MenuItemModel(R.drawable.bolitas, getString(R.string.bolitasnombre), getString(R.string.bolitasdescripcion), getString(R.string.bolitasprecio), 7);
+        MenuItemModel bebida = new MenuItemModel(R.drawable.bloxiade, getString(R.string.bebidanombre), getString(R.string.bebidadescripcion), getString(R.string.bebidaprecio), 5);
+
+
+        // CATEGORÍAS CON BATCH ADD
+        addCategoria(itemsUI, productos, getString(R.string.comidas), tacos, hamburguesa, ensalada, pizza);
+
+        addCategoria(itemsUI, productos, getString(R.string.extras), papas, frijoles, bolitas);
+
+        addCategoria(itemsUI, productos, getString(R.string.bebidas), bebida);
+
+        adapter = new MenuAdapter(this, itemsUI, productos, carritoDAO);
+        adapter.setOnCartUpdatedListener(this::actualizarBadge);
+        recyclerMenu.setAdapter(adapter);
+        MenuData.setProductos(productos);
+    }
+
+
+    private void addCategoria(List<Object> itemsUI, List<MenuItemModel> productos, String titulo, MenuItemModel... models) {
+        // Añade el header
+        itemsUI.add(new MenuHeaderModel(titulo));
+
+        // Añade todos los productos asociados
+        for (MenuItemModel m : models) {
+            itemsUI.add(m);
+            productos.add(m);
+        }
+    }
+
+    private void actualizarBadge() {
+        Cursor c = carritoDAO.obtenerCarrito();
+        int total = 0;
+
+        while (c.moveToNext()) {
+            total += c.getInt(1);
+        }
+        c.close();
+
+        if (total > 0) {
+            tvTotalCount.setVisibility(TextView.VISIBLE);
+            tvTotalCount.setText(String.valueOf(total));
+        } else {
+            tvTotalCount.setVisibility(TextView.GONE);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        actualizarUIContadores();
-    }
-
-    private void configurarToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
-
-    private void inicializarUI() {
-        tvTotalCount = findViewById(R.id.tvTotalCount);
-
-        findViewById(R.id.btnCarrito).setOnClickListener(v -> startActivity(new Intent(MenuActivity.this, CarritoActivity.class)));
-    }
-
-    /**
-     * Enlaza cada producto con sus contadores y botones
-     */
-    private void inicializarContadores() {
-        setupProductCounter("hamburguesa", R.id.btnIncrementHamburguesa, R.id.btnDecrementHamburguesa, R.id.tvCountHamburguesa);
-        setupProductCounter("tacos",        R.id.btnIncrementTacos,        R.id.btnDecrementTacos,        R.id.tvCountTacos);
-        setupProductCounter("ensalada",     R.id.btnIncrementEnsalada,     R.id.btnDecrementEnsalada,     R.id.tvCountEnsalada);
-        setupProductCounter("pizza",        R.id.btnIncrementPizza,        R.id.btnDecrementPizza,        R.id.tvCountPizza);
-        setupProductCounter("papas",        R.id.btnIncrementPapas,        R.id.btnDecrementPapas,        R.id.tvCountPapas);
-        setupProductCounter("frijoles",     R.id.btnIncrementFrijoles,     R.id.btnDecrementFrijoles,     R.id.tvCountFrijoles);
-        setupProductCounter("bolitas",      R.id.btnIncrementBolitas,      R.id.btnDecrementBolitas,      R.id.tvCountBolitas);
-        setupProductCounter("bebida",       R.id.btnIncrementBebida,       R.id.btnDecrementBebida,       R.id.tvCountBebida);
-    }
-
-    private void setupProductCounter(String productName, int incrementId, int decrementId, int countId) {
-
-        TextView tvCount = findViewById(countId);
-        countTextViews.put(productName, tvCount);
-
-        findViewById(incrementId).setOnClickListener(v -> modificarProducto(productName, 1));
-        findViewById(decrementId).setOnClickListener(v -> modificarProducto(productName, -1));
-
-        tvCount.setText("0");
-    }
-
-    /**
-     * Incrementa o decrementa en BD y refresca UI
-     */
-    private void modificarProducto(String producto, int cambio) {
-        if (cambio == 1) {
-            carritoDAO.agregarProducto(producto);
-        } else {
-            carritoDAO.restarProducto(producto);
+        if (adapter != null) {
+            adapter.refreshQuantities();
         }
-
-        actualizarUIContadores();
+        actualizarBadge();
     }
 
-    /**
-     * Lee datos desde SQLite y actualiza contadores visuales
-     */
-    private void actualizarUIContadores() {
-
-        int total = 0;
-
-        // Primero ponemos todo a 0 temporalmente
-        for (String key : countTextViews.keySet()) {
-            TextView tv = countTextViews.get(key);
-            if (tv != null) tv.setText("0");
-        }
-
-        // Ahora consultamos SQLite
-        Cursor cursor = carritoDAO.obtenerCarrito();
-
-        while (cursor.moveToNext()) {
-            String nombre = cursor.getString(0);
-            int cantidad = cursor.getInt(1);
-
-            total += cantidad;
-
-            TextView tv = countTextViews.get(nombre);
-            if (tv != null) {
-                tv.setText(String.valueOf(cantidad));
-            }
-        }
-
-        cursor.close();
-
-        // Finalmente actualizamos el badge del carrito
-        if (total > 0) {
-            tvTotalCount.setVisibility(View.VISIBLE);
-            tvTotalCount.setText(String.valueOf(total));
-        } else {
-            tvTotalCount.setVisibility(View.GONE);
-        }
-    }
-
-
-    private void configurarInsetsPantalla() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(bars.left, bars.top, bars.right, bars.bottom);
-            return insets;
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.menu_historial) {
-            mostrarMensaje("Historial de pedidos");
-            return true;
-
-        } else if (id == R.id.menu_promociones) {
-            mostrarMensaje("Promociones");
-            return true;
-
-        } else if (id == R.id.menu_acerca) {
-            mostrarMensaje("Acerca de la aplicación");
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    private void mostrarMensaje(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
-    }
 }

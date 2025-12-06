@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Tarea_02</string>
+    <string name="app_name">Restaurante Robloxiano</string>
     <string name="inicio">Restaurante Robloxiano</string>
 
     <string name="presentacion">Menú</string>
+    <string name="comidas">COMIDAS</string>
     <string name="tacos">TACOS</string>
     <string name="tacosnombre">Tipi Tacos</string>
     <string name="tacosdescripcion">Tacos robloxianos con carne de Brainrot y salsa de Bloxburg</string>
@@ -23,7 +24,7 @@
     <string name="pizzadescripcion">Pizza Robloxiana importada desde Work at Pizza Place, con ingredientes secretos</string>
     <string name="pizzaprecio">25 Robux</string>
 
-    <string name="extras">Acompañamientos</string>
+    <string name="extras">ACOMPAÑAMIENTOS</string>
 
     <string name="papasnombre">Patatax</string>
     <string name="papasdescripcion">Papas caseras cosechadas de Grow a Garden fritas en aceite Robloxiano</string>
@@ -33,13 +34,13 @@
     <string name="frijolesdescripcion">Frijoles mágicos en lata cosechados en Grow a Garden</string>
     <string name="frijolesprecio">5 Robux</string>
 
-    <string name="bolitas">Diwali</string>
+    <string name="bolitasnombre">Diwali</string>
     <string name="bolitasdescripcion">Bolitas de Diwali con especies rellenas de queso</string>
     <string name="bolitasprecio">7 Robux</string>
 
     <string name="bebidas">BEBIDAS</string>
 
-    <string name="bebida">Bloxiade</string>
+    <string name="bebidanombre">Bloxiade</string>
     <string name="bebidadescripcion">Bebida energizante sabor a brainrot</string>
     <string name="bebidaprecio">5 Robux</string>
 

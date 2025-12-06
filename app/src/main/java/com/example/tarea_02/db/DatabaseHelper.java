@@ -12,8 +12,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String TABLE_PRODUCTOS = "productos";
     public static final String TABLE_CARRITO = "carrito";
 
+    private final Context context;
+
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        this.context = context;
     }
 
     @Override
@@ -21,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // Tabla de productos
         db.execSQL(
-                "CREATE TABLE " + TABLE_PRODUCTOS + "(" + "id INTEGER PRIMARY KEY AUTOINCREMENT," + "nombre TEXT UNIQUE," + "precio INTEGER" + ")"
+                "CREATE TABLE " + TABLE_PRODUCTOS + "(" + "id INTEGER PRIMARY KEY AUTOINCREMENT," + "nombre TEXT UNIQUE," + "precioEntero INTEGER," + "precioTexto TEXT," + "descripcion TEXT" + ")"
         );
 
         // Tabla de carrito
@@ -30,14 +33,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         // Insertar productos base
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('hamburguesa', 9)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('tacos', 8)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('ensalada', 5)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('pizza', 25)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('papas', 4)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('frijoles', 5)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('bolitas', 7)");
-        db.execSQL("INSERT INTO productos (nombre, precio) VALUES ('bebida', 5)");
+        ProductSeeder.insertarBase(context, db);
     }
 
     @Override

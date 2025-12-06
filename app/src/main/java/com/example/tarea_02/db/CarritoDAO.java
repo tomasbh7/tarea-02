@@ -73,4 +73,17 @@ public class CarritoDAO {
         db.delete("carrito", null, null);
         db.close();
     }
+
+    public int obtenerCantidadProducto(String nombre) {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT cantidad FROM carrito WHERE producto = ?", new String[]{nombre});
+        if (cursor.moveToFirst()) {
+            int cantidad = cursor.getInt(0);
+            cursor.close();
+            return cantidad;
+        }
+        cursor.close();
+        return 0;
+    }
+
 }
