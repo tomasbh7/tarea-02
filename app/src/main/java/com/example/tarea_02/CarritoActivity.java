@@ -90,7 +90,7 @@ public class CarritoActivity extends AppCompatActivity {
                 subtotal += modelo.precioInt * cantidad;
             } else {
                 tvNombre.setText(nombre);
-                tvPrecio.setText("0.00");
+                tvPrecio.setText(getString(R.string.inicial));
             }
 
             tvCantidad.setText(String.valueOf(cantidad));
