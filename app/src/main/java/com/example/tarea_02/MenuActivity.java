@@ -40,7 +40,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private ActionBarDrawerToggle toggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,10 +84,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private void configurarDrawer() {
         Log.d(TAG, "configurarDrawer: Configurando Navigation Drawer");
 
-        toggle = new ActionBarDrawerToggle(
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this,
                 drawerLayout,
-                (Toolbar) findViewById(R.id.toolbar),
+                findViewById(R.id.toolbar),
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close
         );

@@ -1,5 +1,6 @@
 package com.example.tarea_02;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -70,16 +71,20 @@ public class HistorialActivity extends AppCompatActivity {
             Log.d(TAG, "Pedido leído -> ID: " + idPedido + ", Fecha: " + fecha + ", Total: " + total);
 
             // Inflar la tarjeta del historial
-            View card = inflater.inflate(R.layout.item_historial, null);
+            @SuppressLint("InflateParams") View card = inflater.inflate(R.layout.item_historial, null);
 
             // Setear los campos de la card
             TextView txtId = card.findViewById(R.id.txt_id_pedido);
             TextView txtFecha = card.findViewById(R.id.txt_fecha_pedido);
             TextView txtTotal = card.findViewById(R.id.txt_total_pedido);
 
-            txtId.setText("Pedido #" + idPedido);
-            txtFecha.setText("Fecha: " + fecha);
-            txtTotal.setText("Total: $" + total);
+            String txtIdMsg = "Pedido #" + idPedido;
+            String txtFechaMsg = "Fecha: " + fecha;
+            String txtTotalMsg = "Total: $" + total;
+
+            txtId.setText(txtIdMsg);
+            txtFecha.setText(txtFechaMsg);
+            txtTotal.setText(txtTotalMsg);
 
             // Agregar card al layout principal
             layoutHistorial.addView(card);

@@ -14,16 +14,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final int DB_VERSION = 1;
 
     // Nombres de tablas
-    public static final String TABLE_PRODUCTOS = "productos"; // (No se usa actualmente)
     public static final String TABLE_CARRITO = "carrito";
     public static final String TABLE_PEDIDOS = "pedidos";
     public static final String TABLE_DETALLE_PEDIDO = "detalle_pedido";
 
-    private final Context context;
-
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        this.context = context;
         Log.d(TAG, "Constructor: Base de datos inicializada -> " + DB_NAME);
     }
 

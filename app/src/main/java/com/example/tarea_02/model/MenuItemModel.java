@@ -4,7 +4,6 @@ package com.example.tarea_02.model;
  * Modelo que representa un producto del menú dentro de la aplicación.
  * Es utilizado por el RecyclerView para mostrar los elementos disponibles,
  * así como para obtener información cuando se agrega al carrito.
- *
  * Cada instancia contiene la información necesaria para mostrar un ítem:
  * imagen, nombre, descripción, precios y cantidad seleccionada.
  */

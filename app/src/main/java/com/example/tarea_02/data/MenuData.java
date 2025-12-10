@@ -6,11 +6,9 @@ import com.example.tarea_02.model.MenuItemModel;
 
 /**
  * Clase estática que funciona como un repositorio temporal de productos del menú.
- *
  * Es utilizada para que diversas partes de la aplicación (como el carrito o el historial)
  * puedan acceder a la lista completa de productos disponibles sin necesidad de volver
  * a instanciarlos o recrear estructuras.
- *
  * IMPORTANTE:
  * - Esta clase conserva los productos cargados en memoria mientras la app siga activa.
  * - No persiste la información en la base de datos.

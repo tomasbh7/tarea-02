@@ -21,10 +21,8 @@ import java.util.List;
 /**
  * Adaptador del RecyclerView que maneja tanto ítems tipo encabezado (categorías)
  * como productos reales dentro del menú.
- *
  * items = Lista mezclada de MenuHeaderModel + MenuItemModel (para UI)
  * productos = Lista únicamente de productos (para actualizar cantidades)
- *
  * Este adaptador también interactúa directamente con el DAO del carrito para
  * actualizar cantidades y notificar cambios.
  */
