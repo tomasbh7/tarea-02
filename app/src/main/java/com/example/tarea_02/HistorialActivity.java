@@ -42,7 +42,7 @@ public class HistorialActivity extends AppCompatActivity {
     }
 
     /**
-     * Método encargado de consultar todos los pedidos almacenados en la base de datos
+     * Función encargada de consultar todos los pedidos almacenados en la base de datos
      * y mostrarlos dinámicamente dentro del layout principal.
      */
     private void cargarHistorial() {
