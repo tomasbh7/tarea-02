@@ -83,4 +83,7 @@
 
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>
+    <string name="pedido_default">Pedido #123</string>
+    <string name="fecha_default">Fecha: 2025-01-01</string>
+    <string name="total_default">Total: $150</string>
 </resources>

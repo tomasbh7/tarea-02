@@ -12,7 +12,7 @@
         android:id="@+id/txt_id_pedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pedido #123"
+        android:text="@string/pedido_default"
         android:textSize="22sp"
         android:textStyle="bold"
         android:textColor="#8B4513" />
@@ -21,7 +21,7 @@
         android:id="@+id/txt_fecha_pedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fecha: 2025-01-01"
+        android:text="@string/fecha_default"
         android:textSize="18sp"
         android:textColor="#8B4513"
         android:layout_marginTop="6dp"/>
@@ -30,7 +30,7 @@
         android:id="@+id/txt_total_pedido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: $150"
+        android:text="@string/total_default"
         android:textSize="18sp"
         android:textColor="#8B4513"
         android:layout_marginTop="6dp"/>
