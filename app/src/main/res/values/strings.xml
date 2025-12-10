@@ -79,6 +79,8 @@
     <string name="opcion2">Promociones</string>
     <string name="opcion3">Acerca de</string>
 
+    <string name="historial">Historial</string>
+
     <string name="navigation_drawer_open">Abrir menú</string>
     <string name="navigation_drawer_close">Cerrar menú</string>
 </resources>

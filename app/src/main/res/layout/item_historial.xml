@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:background="#F5E6D3"
+    android:elevation="3dp">
+
+    <TextView
+        android:id="@+id/txt_id_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedido #123"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="#8B4513" />
+
+    <TextView
+        android:id="@+id/txt_fecha_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha: 2025-01-01"
+        android:textSize="18sp"
+        android:textColor="#8B4513"
+        android:layout_marginTop="6dp"/>
+
+    <TextView
+        android:id="@+id/txt_total_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total: $150"
+        android:textSize="18sp"
+        android:textColor="#8B4513"
+        android:layout_marginTop="6dp"/>
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.example.tarea_02;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,8 +30,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    RecyclerView recyclerMenu;
-    MenuAdapter adapter;
+
+    private static final String TAG = "MenuActivity";
+
+    private MenuAdapter adapter;
     private TextView tvTotalCount;
 
     private CarritoDAO carritoDAO;
@@ -43,6 +46,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
+
+        Log.d(TAG, "onCreate: Iniciando MenuActivity");
+
         getWindow().setStatusBarColor(getResources().getColor(R.color.white));
         setContentView(R.layout.activity_menu);
 
@@ -50,43 +56,63 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         tvTotalCount = findViewById(R.id.tvTotalCount);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
-
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        navigationView.setNavigationItemSelectedListener(this);
-
-        tvTotalCount = findViewById(R.id.tvTotalCount);
+        configurarToolbar();
+        configurarDrawer();
 
         carritoDAO = new CarritoDAO(this);
 
-        findViewById(R.id.btnCarrito).setOnClickListener(v ->
-                startActivity(new Intent(MenuActivity.this, CarritoActivity.class)));
+        findViewById(R.id.btnCarrito).setOnClickListener(v -> {
+            Log.d(TAG, "Botón Carrito presionado: Abriendo CarritoActivity");
+            startActivity(new Intent(MenuActivity.this, CarritoActivity.class));
+        });
 
         setupRecycler();
         actualizarBadge();
     }
 
+    /**
+     * Configura el Toolbar como ActionBar de la actividad.
+     */
+    private void configurarToolbar() {
+        Log.d(TAG, "configurarToolbar: Configurando toolbar");
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    /**
+     * Implementa el drawer lateral y su sincronización con el toolbar.
+     */
+    private void configurarDrawer() {
+        Log.d(TAG, "configurarDrawer: Configurando Navigation Drawer");
+
+        toggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                (Toolbar) findViewById(R.id.toolbar),
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+        );
+
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * Manejo de selección de elementos del menú lateral.
+     */
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         int id = item.getItemId();
+        Log.d(TAG, "onNavigationItemSelected: Selección -> " + item.getTitle());
 
         if (id == R.id.nav_menu) {
-            // Ya estamos en el menú principal
             Toast.makeText(this, "Menú Principal", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_carrito) {
-            // Ir al carrito
             startActivity(new Intent(this, CarritoActivity.class));
         } else if (id == R.id.nav_historial) {
-            Toast.makeText(this, "Historial de Pedidos", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, HistorialActivity.class));
         } else if (id == R.id.nav_promociones) {
             Toast.makeText(this, "Promociones", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_config) {
@@ -95,47 +121,55 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(this, "Acerca de la aplicación", Toast.LENGTH_SHORT).show();
         }
 
-        // Cerrar el drawer después de seleccionar
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    /**
+     * Control del botón atrás para cerrar el drawer si está abierto.
+     */
     @Override
     public void onBackPressed() {
         if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            Log.d(TAG, "onBackPressed: Drawer abierto, cerrando");
             drawerLayout.closeDrawer(GravityCompat.START);
         } else {
+            Log.d(TAG, "onBackPressed: Drawer cerrado, volviendo atrás normalmente.");
             super.onBackPressed();
         }
     }
 
+    /**
+     * Inflar el menú superior (3 puntos).
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        Log.d(TAG, "onCreateOptionsMenu: Inflando menú");
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
+    /**
+     * Manejo de selección de opciones del menú superior (tres puntos).
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        // Manejar clic en el ícono de hamburguesa (lado izquierdo)
+        int id = item.getItemId();
+        Log.d(TAG, "onOptionsItemSelected: Selección -> " + item.getTitle());
+
         if (id == android.R.id.home) {
-           Toast.makeText(this, "Menú hamburguesa presionado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Menú hamburguesa presionado", Toast.LENGTH_SHORT).show();
             return true;
         }
 
-        // Manejar los ítems del menú de tres puntos (lado derecho)
         if (id == R.id.menu_historial) {
-            // Abrir historial de pedidos
-            Toast.makeText(this, "Historial de pedidos", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, HistorialActivity.class));
             return true;
         } else if (id == R.id.menu_promociones) {
-            // Ver promociones
             Toast.makeText(this, "Promociones", Toast.LENGTH_SHORT).show();
             return true;
         } else if (id == R.id.menu_acerca) {
-            // Acerca de la aplicación
             Toast.makeText(this, "Acerca de la aplicación", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -143,15 +177,20 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Configura el RecyclerView con categorías y productos.
+     */
     private void setupRecycler() {
 
-        recyclerMenu = findViewById(R.id.recyclerMenu);
+        Log.d(TAG, "setupRecycler: Preparando lista de menú");
+
+        RecyclerView recyclerMenu = findViewById(R.id.recyclerMenu);
         recyclerMenu.setLayoutManager(new LinearLayoutManager(this));
 
         List<Object> itemsUI = new ArrayList<>();
         List<MenuItemModel> productos = new ArrayList<>();
 
-        // Crear productos
+        // Crear y registrar productos
         MenuItemModel tacos = new MenuItemModel(R.drawable.taco, getString(R.string.tacosnombre), getString(R.string.tacosdescripcion), getString(R.string.tacosprecio), 8);
         MenuItemModel hamburguesa = new MenuItemModel(R.drawable.hamburguesa, getString(R.string.hamburguesanombre), getString(R.string.hamburguesadescripcion), getString(R.string.hamburguesaprecio), 9);
         MenuItemModel ensalada = new MenuItemModel(R.drawable.ensalada, getString(R.string.ensaladanombre), getString(R.string.ensaladadescripcion), getString(R.string.ensaladaprecio), 5);
@@ -161,33 +200,47 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         MenuItemModel bolitas = new MenuItemModel(R.drawable.bolitas, getString(R.string.bolitasnombre), getString(R.string.bolitasdescripcion), getString(R.string.bolitasprecio), 7);
         MenuItemModel bebida = new MenuItemModel(R.drawable.bloxiade, getString(R.string.bebidanombre), getString(R.string.bebidadescripcion), getString(R.string.bebidaprecio), 5);
 
+        Log.d(TAG, "setupRecycler: Generando categorías");
 
-        // CATEGORÍAS CON BATCH ADD
         addCategoria(itemsUI, productos, getString(R.string.comidas), tacos, hamburguesa, ensalada, pizza);
-
         addCategoria(itemsUI, productos, getString(R.string.extras), papas, frijoles, bolitas);
-
         addCategoria(itemsUI, productos, getString(R.string.bebidas), bebida);
 
         adapter = new MenuAdapter(this, itemsUI, productos, carritoDAO);
-        adapter.setOnCartUpdatedListener(this::actualizarBadge);
+        adapter.setOnCartUpdatedListener(() -> {
+            Log.d(TAG, "setupRecycler: Carrito actualizado, actualizando badge");
+            actualizarBadge();
+        });
+
         recyclerMenu.setAdapter(adapter);
+
         MenuData.setProductos(productos);
+
+        Log.d(TAG, "setupRecycler: Menú configurado correctamente.");
     }
 
-
+    /**
+     * Añade una categoría y sus productos a la lista del recycler.
+     */
     private void addCategoria(List<Object> itemsUI, List<MenuItemModel> productos, String titulo, MenuItemModel... models) {
-        // Añade el header
+
+        Log.d(TAG, "addCategoria: Agregando categoría -> " + titulo);
+
         itemsUI.add(new MenuHeaderModel(titulo));
 
-        // Añade todos los productos asociados
         for (MenuItemModel m : models) {
+            Log.d(TAG, "addCategoria: Producto agregado -> " + m.nombre);
             itemsUI.add(m);
             productos.add(m);
         }
     }
 
+    /**
+     * Actualiza el número de ítems en el carrito (badge).
+     */
     private void actualizarBadge() {
+        Log.d(TAG, "actualizarBadge: Consultando carrito");
+
         Cursor c = carritoDAO.obtenerCarrito();
         int total = 0;
 
@@ -195,6 +248,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             total += c.getInt(1);
         }
         c.close();
+
+        Log.d(TAG, "actualizarBadge: Cantidad total = " + total);
 
         if (total > 0) {
             tvTotalCount.setVisibility(TextView.VISIBLE);
@@ -204,13 +259,17 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * Refresca cantidades de productos al volver a la actividad.
+     */
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume: Actualizando cantidades y badge");
+
         if (adapter != null) {
             adapter.refreshQuantities();
         }
         actualizarBadge();
     }
-
 }

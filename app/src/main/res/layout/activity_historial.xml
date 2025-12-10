@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HistorialActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título del Historial -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="#F5E6D3"
+            android:layout_marginBottom="24dp"
+            android:elevation="2dp">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/back_arrow"
+                android:contentDescription="@string/desc_atras" />
+
+            <TextView
+                android:id="@+id/txt_titulo_historial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/historial"
+                android:textColor="#8B4513"
+                android:textSize="40sp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+
+        <!-- CONTENEDOR DONDE SE AGREGARÁN LAS CARDS DE HISTORIAL -->
+        <LinearLayout
+            android:id="@+id/layoutHistorial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
